@@ -13,6 +13,15 @@ Este complemento está diseñado para optimizar la colaboración y la productivi
 -   **Integración con Rose Rocket:** Se conecta con la API de Rose Rocket a través de la librería `RoseRocketGASLibrary` para funcionalidades relacionadas con la gestión de órdenes o logística.
 -   **Gestión Segura de Propiedades:** Utiliza `PropertiesService` para almacenar de forma segura configuraciones y credenciales sensibles.
 
+**Interfaz de Usuario:**
+La función `createGenericCard()` genera la tarjeta de presentación principal del complemento, con el título "Auxiliar para Gmail - Version 1.0". Esta tarjeta proporciona una descripción general de las funciones del complemento y las actividades que se pueden realizar.
+
+**Funciones Principales:**
+*   **Procesamiento para SALSAS CASTILLO**
+*   **Creacion de ordenes ILS**
+*   **Creacion de ordenes Taylor**
+*   **Creacion de ordenes Berlin**
+
 **Tecnologías y Dependencias:**
 -   **Google Apps Script:** Plataforma de desarrollo principal.
 -   **Servicios Avanzados de Google:** Gmail Service, CardService.
