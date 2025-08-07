@@ -1,34 +1,40 @@
-# Internal Workspace add-on
+# Auxiliar de Gmail para Tareas Automatizadas
 
-Este es el repositorio de un complemento interno de Google Workspace diseñado para mejorar la funcionalidad y automatizar tareas específicas dentro de un entorno de Google Workspace.
+Este complemento de Google Workspace está diseñado para simplificar y automatizar tareas repetitivas directamente desde Gmail, ayudando a mejorar la eficiencia y la productividad del equipo.
 
-**Funcionalidad Principal:**
-Este complemento está diseñado para optimizar la colaboración y la productividad del equipo mediante la integración de procesos personalizados en varias aplicaciones de Google Workspace.
+## ¿Qué hace este complemento?
 
-**Características Clave:**
--   **Integración con Gmail:** Automatiza tareas relacionadas con correos electrónicos, incluyendo la lectura de mensajes, la composición y el manejo de archivos adjuntos.
--   **Integración con Google Drive:** Permite acciones contextuales sobre elementos seleccionados en Google Drive.
--   **Página de Inicio Centralizada:** Proporciona una interfaz de usuario unificada al iniciar el complemento, con enlaces rápidos a Gmail y Drive.
--   **Procesamiento de Documentos:** Utiliza la librería `ProcesadorAIdeDocumentos` para el procesamiento avanzado de documentos, posiblemente a través de Google Document AI.
--   **Integración con Rose Rocket:** Se conecta con la API de Rose Rocket a través de la librería `RoseRocketGASLibrary` para funcionalidades relacionadas con la gestión de órdenes o logística.
--   **Gestión Segura de Propiedades:** Utiliza `PropertiesService` para almacenar de forma segura configuraciones y credenciales sensibles.
+El "Auxiliar para Gmail" se integra con tu correo electrónico para automatizar la creación de órdenes de trabajo en el sistema **Rose Rocket**. Funciona extrayendo información clave de los correos electrónicos y archivos adjuntos (como archivos PDF y hojas de cálculo) que recibes de diferentes clientes.
 
-**Interfaz de Usuario:**
-La función `createGenericCard()` genera la tarjeta de presentación principal del complemento, con el título "Auxiliar para Gmail - Version 1.0". Esta tarjeta proporciona una descripción general de las funciones del complemento y las actividades que se pueden realizar.
+### Funcionalidades Principales:
 
-**Funciones Principales:**
-*   **Procesamiento para SALSAS CASTILLO**
-*   **Creacion de ordenes ILS**
-*   **Creacion de ordenes Taylor**
-*   **Creacion de ordenes Berlin**
+*   **Creación automática de órdenes:** Cuando recibes un correo electrónico con una guía de carga de clientes específicos, el complemento lo detecta y te presenta una tarjeta interactiva. Con un solo clic, puedes procesar la información del archivo adjunto y crear una nueva orden en Rose Rocket, sin necesidad de introducir los datos manualmente.
 
-**Tecnologías y Dependencias:**
--   **Google Apps Script:** Plataforma de desarrollo principal.
--   **Servicios Avanzados de Google:** Gmail Service, CardService.
--   **Librerías Externas:**
-    -   `RoseRocketGASLibrary`
-    -   `ProcesadorAIdeDocumentos`
--   **Scopes de OAuth:** Requiere permisos para interactuar con Gmail, Drive, Hojas de Cálculo, y realizar solicitudes externas, entre otros.
+*   **Soporte para Múltiples Clientes:** El sistema está configurado para trabajar con varios clientes, entre ellos:
+    *   **SALSAS CASTILLO**
+    *   **ILS**
+    *   **Taylor**
+    *   **Berlin**
 
-**Uso:**
-Este es un complemento interno, lo que implica que su despliegue y gestión se realizan a través de la consola de administración de Google Workspace o directamente desde el proyecto de Google Apps Script.
+*   **Interfaz Sencilla en Gmail:** No necesitas salir de Gmail para realizar estas acciones. El complemento muestra una barra lateral con botones y opciones claras para que puedas gestionar las órdenes de forma rápida y sencilla.
+
+*   **Notificaciones por Correo Electrónico:** Una vez que se ha creado una orden en Rose Rocket, el sistema envía automáticamente un correo electrónico de confirmación para notificar a las partes interesadas.
+
+## ¿Cómo funciona?
+
+1.  **Recibes un correo electrónico:** Cuando llega un correo de un cliente configurado (por ejemplo, con el asunto "Guía de Carga de Berlin"), el complemento se activa.
+2.  **Aparece una tarjeta interactiva:** En la barra lateral de Gmail, verás una tarjeta con el título "Auxiliar para crear órdenes en Rose Rocket".
+3.  **Procesas el archivo adjunto:** La tarjeta te mostrará los archivos adjuntos del correo. Simplemente haz clic en el archivo que deseas procesar.
+4.  **Se crea la orden:** El complemento lee la información del archivo, se conecta con Rose Rocket y crea la orden de trabajo automáticamente.
+5.  **Recibes una confirmación:** Se te notificará por correo electrónico que la orden ha sido creada con éxito.
+
+## Tecnologías Utilizadas
+
+Este complemento ha sido desarrollado con **Google Apps Script**, lo que le permite integrarse de forma nativa con los servicios de Google Workspace. Utiliza tecnologías como:
+
+*   **CardService:** Para crear las interfaces de usuario interactivas dentro de Gmail.
+*   **Gmail API:** Para leer y procesar los correos electrónicos.
+*   **Rose Rocket API:** Para conectarse con el sistema de gestión de órdenes.
+*   **Google Document AI:** Para extraer información de manera inteligente de los documentos PDF.
+
+Este es un complemento interno, diseñado para optimizar los flujos de trabajo específicos de la empresa.
