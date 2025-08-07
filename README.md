@@ -1,0 +1,1 @@
+# Internal Workspace add-on\n\nEste es el repositorio de un complemento interno de Google Workspace.\n\n**Funcionalidad Principal:**\nEste complemento está diseñado para mejorar la funcionalidad y automatizar tareas específicas dentro de un entorno de Google Workspace. Su objetivo es integrar procesos personalizados que optimicen la colaboración y la productividad del equipo.
