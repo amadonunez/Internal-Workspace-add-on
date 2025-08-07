@@ -20,6 +20,8 @@ El "Auxiliar para Gmail" se integra con tu correo electrónico para automatizar 
 
 *   **Notificaciones por Correo Electrónico:** Una vez que se ha creado una orden en Rose Rocket, el sistema envía automáticamente un correo electrónico de confirmación para notificar a las partes interesadas.
 
+*   **Envío de Archivos Adjuntos:** Además de la creación de órdenes, el complemento te permite seleccionar y enviar fácilmente archivos adjuntos a otros destinatarios directamente desde la interfaz del complemento.
+
 ## ¿Cómo funciona?
 
 1.  **Recibes un correo electrónico:** Cuando llega un correo de un cliente configurado (por ejemplo, con el asunto "Guía de Carga de Berlin"), el complemento se activa.
@@ -27,6 +29,52 @@ El "Auxiliar para Gmail" se integra con tu correo electrónico para automatizar 
 3.  **Procesas el archivo adjunto:** La tarjeta te mostrará los archivos adjuntos del correo. Simplemente haz clic en el archivo que deseas procesar.
 4.  **Se crea la orden:** El complemento lee la información del archivo, se conecta con Rose Rocket y crea la orden de trabajo automáticamente.
 5.  **Recibes una confirmación:** Se te notificará por correo electrónico que la orden ha sido creada con éxito.
+
+## Flujos de Trabajo Detallados
+
+El archivo `Gmail_AttachmentsEmail.js` contiene la lógica principal para manejar los diferentes tipos de correos y clientes. A continuación se describen los flujos de trabajo:
+
+### Flujo de Trabajo General para Adjuntos
+
+*   **`createCardWithAttachmentCheckboxesAndEmailOption(thread)`:** Esta función crea una tarjeta genérica que muestra todos los archivos adjuntos (PDF e imágenes) de un correo electrónico con casillas de verificación.
+*   **Selección y Envío:** El usuario puede seleccionar los archivos que desea y especificar un destinatario y un asunto para enviarlos por correo electrónico.
+*   **`sendSelectedPDFsEmail(e)`:** Esta función se activa al hacer clic en el botón de enviar, recopila los archivos seleccionados y los envía al destinatario especificado.
+
+### Flujo de Trabajo para Clientes Específicos
+
+El complemento utiliza funciones específicas para cada cliente, las cuales se activan según el asunto o la etiqueta del correo electrónico.
+
+#### Cliente: ILS
+
+*   **`createCardWithAttachmentbuttonILS(thread)`:** Crea una tarjeta específica para los correos de ILS.
+*   **`createAttachmentsSectionILS(thread)`:** Muestra los archivos adjuntos PDF como botones en la tarjeta.
+*   **`processPdfAttachment(e)`:** Al hacer clic en un botón de archivo adjunto, esta función:
+    1.  Extrae la información del archivo PDF utilizando la API de Google Document AI.
+    2.  Transforma los datos extraídos al formato requerido por Rose Rocket.
+    3.  Crea una nueva orden en Rose Rocket.
+    4.  Sube el archivo PDF original a la orden recién creada.
+    5.  Envía un correo de notificación con el enlace a la nueva orden.
+
+#### Cliente: Taylor
+
+*   **`createCardWithAttachmentbuttonTaylor(thread)`:** Crea una tarjeta para los correos de Taylor.
+*   **`createAttachmentsSectionTaylor(thread)`:** Muestra los archivos adjuntos XLSX como botones y proporciona menús desplegables para seleccionar el origen y el destino.
+*   **`processXlsxAttachmentTaylor(e)`:** Al hacer clic en un botón de archivo adjunto:
+    1.  Convierte el archivo XLSX a una hoja de cálculo de Google.
+    2.  Extrae los datos de la hoja de cálculo.
+    3.  Crea una orden de múltiples paradas en Rose Rocket.
+    4.  Convierte la hoja de cálculo a PDF y la sube a la orden.
+    5.  Envía un correo de notificación con el enlace a la nueva orden.
+
+#### Cliente: Berlin
+
+*   **`createCardWithAttachmentbuttonBerlin(thread)`:** Crea una tarjeta para los correos de Berlin.
+*   **`createAttachmentsSectionBerlin(thread)`:** Muestra los archivos adjuntos que contienen "7512 Departure" en el nombre como botones.
+*   **`processPdfAttachmentBerlin(e)`:** Al hacer clic en un botón de archivo adjunto:
+    1.  Procesa el archivo PDF con Google Document AI.
+    2.  Crea una orden de múltiples tramos en Rose Rocket.
+    3.  Sube el archivo PDF a la orden.
+    4.  Envía un correo de notificación con el enlace a la nueva orden.
 
 ## Tecnologías Utilizadas
 
